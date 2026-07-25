@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://d2cfsshc6aqj8"]
+
+[ext_resource type="Script" uid="uid://hx3v6yu5y6di" path="res://scripts/level.gd" id="1_2q6dc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
+
+[node name="Level" type="Node2D" unique_id=1096565033]
+script = ExtResource("1_2q6dc")
+
+[node name="Start" type="Node2D" parent="." unique_id=265871457]
+
+[node name="Marker2D" type="Marker2D" parent="Start" unique_id=1002865464]
+position = Vector2(99, 418)
+
+[node name="End" type="Node2D" parent="." unique_id=903102241]
+
+[node name="Marker2D" type="Marker2D" parent="End" unique_id=981112459]
+position = Vector2(1023, 135)
+
+[node name="Ground" type="Node2D" parent="." unique_id=1782636052]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground" unique_id=242825431]
+position = Vector2(0, 551)
+
+[node name="ColorRect" type="ColorRect" parent="Ground/StaticBody2D" unique_id=408912337]
+offset_right = 1155.2
+offset_bottom = 97.88
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D" unique_id=690668628]
+position = Vector2(577.6, 48.94)
+scale = Vector2(57.76, 4.94)
+shape = SubResource("RectangleShape2D_w7c3h")
