@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://d2cfsshc6aqj8"]
 
 [ext_resource type="Script" uid="uid://hx3v6yu5y6di" path="res://scripts/level.gd" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://b6ix67ck028v8" path="res://scenes/testing_stuff/test_object.tscn" id="2_w7c3h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_biclr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
 
@@ -17,6 +20,11 @@ position = Vector2(99, 418)
 [node name="Marker2D" type="Marker2D" parent="End" unique_id=981112459]
 position = Vector2(1023, 135)
 
+[node name="EndHitbox" type="Area2D" parent="End/Marker2D" unique_id=1263425692]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="End/Marker2D/EndHitbox" unique_id=825451531]
+shape = SubResource("RectangleShape2D_biclr")
+
 [node name="Ground" type="Node2D" parent="." unique_id=1782636052]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Ground" unique_id=242825431]
@@ -30,3 +38,23 @@ offset_bottom = 97.88
 position = Vector2(577.6, 48.94)
 scale = Vector2(57.76, 4.94)
 shape = SubResource("RectangleShape2D_w7c3h")
+
+[node name="TestObjects" type="Node2D" parent="." unique_id=969744204]
+
+[node name="TestObject" parent="TestObjects" unique_id=1850340220 instance=ExtResource("2_w7c3h")]
+position = Vector2(488, 317)
+
+[node name="TestObject4" parent="TestObjects" unique_id=1414757509 instance=ExtResource("2_w7c3h")]
+position = Vector2(99, 443)
+
+[node name="TestObject5" parent="TestObjects" unique_id=1807744727 instance=ExtResource("2_w7c3h")]
+position = Vector2(327, 376)
+
+[node name="TestObject6" parent="TestObjects" unique_id=156814615 instance=ExtResource("2_w7c3h")]
+position = Vector2(205, 412)
+
+[node name="TestObject2" parent="TestObjects" unique_id=873735236 instance=ExtResource("2_w7c3h")]
+position = Vector2(647, 252)
+
+[node name="TestObject3" parent="TestObjects" unique_id=352283714 instance=ExtResource("2_w7c3h")]
+position = Vector2(818, 193)

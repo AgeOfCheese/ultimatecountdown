@@ -5,7 +5,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 
-[node name="Player" type="CharacterBody2D" unique_id=618513768]
+[node name="Player" type="CharacterBody2D" unique_id=618513768 groups=["players"]]
 scale = Vector2(2.156063, 1.7945489)
 script = ExtResource("1_g2els")
 
@@ -15,3 +15,7 @@ shape = SubResource("RectangleShape2D_onrkg")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=247466889]
 scale = Vector2(0.16514534, 0.18515533)
 texture = ExtResource("2_qhqgy")
+
+[node name="WallJumpTimer" type="Timer" parent="." unique_id=475150290]
+wait_time = 0.25
+one_shot = true

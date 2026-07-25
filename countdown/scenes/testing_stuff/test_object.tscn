@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b6ix67ck028v8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_biclr"]
+
+[node name="TestObject" type="StaticBody2D" unique_id=1850340220]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1573954984]
+shape = SubResource("RectangleShape2D_biclr")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1278781279]
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
