@@ -91,7 +91,7 @@ func select_object(mouse_pos : Vector2):
 	current_node = RoundManager.OBJECT_POOl.get(current_object).instantiate()
 	add_child(current_node)
 	current_node.global_position = get_snapped_mouse_pos()
-	print("Selected object:", current_object)
+	print("Selected object:", current_object)	
 
 func place_object():
 	if current_node == null:
