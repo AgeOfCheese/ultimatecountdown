@@ -15,7 +15,7 @@ func _on_start_pressed():
 	get_tree().call_deferred("change_scene_to_file", RoundManager.PLACEMENT_SCENE_PATH)
 
 func _on_options_pressed():
-	print("Options menu not implemented yet")
+	get_tree().call_deferred("change_scene_to_file", RoundManager.OPTIONS_SCENE_PATH)
 	# TODO: change_scene_to_file to an options scene once it exists
 
 func _on_tutorial_pressed():

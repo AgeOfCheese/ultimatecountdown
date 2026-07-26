@@ -6,6 +6,7 @@ const PLACEMENT_SCENE_PATH = "res://scenes/placement.tscn"
 const LEVEL_SCENE_PATH = "res://scenes/level.tscn"
 const VICTORY_SCENE_PATH = "res://scenes/victory.tscn"
 const FAILURE_SCENE_PATH = "res://scenes/failure.tscn"
+const OPTIONS_SCENE_PATH = "uid://cs1so3a1p3y6o"
 
 const WINS_TO_VICTORY = 10
 const DEATHS_TO_FAILURE = 5
