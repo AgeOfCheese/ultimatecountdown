@@ -45,29 +45,35 @@ func activate_random_object():
 	if has_randomized:
 		return
 
-
 	has_randomized = true
 
 
 	var random_number = possible_objects.pick_random()
 
-
 	print("Random block became:", random_number)
 
 
-
-	# Hide the fake random block
-	$Sprite2D.visible = false
+	var spawn_position = global_position
 
 
+	# Tell RoundManager the object changed
+	RoundManager.replace_object(
+		"7",
+		str(random_number),
+		spawn_position,
+		rotation
+	)
 
-	# Spawn chosen object
-	var chosen_object = RoundManager.OBJECT_POOl.get(
+
+	# Spawn the real object
+	var new_object = RoundManager.OBJECT_POOl.get(
 		random_number
 	).instantiate()
 
 
-	add_child(chosen_object)
+	get_parent().add_child(new_object)
+
+	new_object.global_position = spawn_position
 
 
-	chosen_object.position = Vector2.ZERO
+	queue_free()
