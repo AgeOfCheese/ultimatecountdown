@@ -1,3 +1,31 @@
 [gd_scene format=3 uid="uid://bj21ryx4d1hwq"]
 
-[node name="BlackHole" type="Node2D" unique_id=502358412]
+[ext_resource type="Texture2D" uid="uid://cstg7oa3s5s0y" path="res://sprites/objects4-10.png" id="1_c38ms"]
+[ext_resource type="Script" uid="uid://boydrhp2nap8w" path="res://scripts/black_hole.gd" id="1_ydyho"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f743o"]
+size = Vector2(9, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lmi0a"]
+radius = 121.103264
+
+[node name="BlackHole" type="StaticBody2D" unique_id=456598948]
+script = ExtResource("1_ydyho")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=569666335]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_f743o")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1182976064]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("1_c38ms")
+region_enabled = true
+region_rect = Rect2(1820.8531, 95.50992, 467.86072, 649.1565)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=250144879]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1813011113]
+shape = SubResource("CircleShape2D_lmi0a")
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]
