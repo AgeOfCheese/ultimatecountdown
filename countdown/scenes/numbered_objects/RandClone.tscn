@@ -1,3 +1,20 @@
 [gd_scene format=3 uid="uid://dabk38jbxsbng"]
 
-[node name="RandClone" type="Node2D" unique_id=1099306785]
+[ext_resource type="Script" uid="uid://csijvruxnsj1w" path="res://scripts/random_clone.gd" id="1_2lf1g"]
+[ext_resource type="Texture2D" uid="uid://q3eurbppt4k4" path="res://sprites/seven_block.png" id="2_ovhqy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f743o"]
+size = Vector2(59, 60)
+
+[node name="RandClone" type="StaticBody2D" unique_id=273216120]
+script = ExtResource("1_2lf1g")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1331635863]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("2_ovhqy")
+region_enabled = true
+region_rect = Rect2(134.09619, 148.74695, 864.249, 850.603)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=175155070]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_f743o")

@@ -1,31 +1,73 @@
 extends NumberedObject
 
-const OBJECTS = {
-0: preload("res://scenes/numbered_objects/Portal.tscn"),
-1: preload("res://scenes/numbered_objects/StandardWall.tscn"),
-2: preload("res://scenes/numbered_objects/BlockWithSpikes.tscn"),
-3: preload("res://scenes/numbered_objects/Flamethrower.tscn"),
-4: preload("res://scenes/numbered_objects/ShieldBlock.tscn"),
-5:preload("res://scenes/numbered_objects/JumpPad.tscn"),
-6: preload("res://scenes/numbered_objects/StandardPlatform.tscn"),
-8: preload("res://scenes/numbered_objects/BlackHole.tscn"),
-9: preload("res://scenes/numbered_objects/DamagePlatform.tscn"),
-10: preload("res://scenes/numbered_objects/Cloud.tscn")
-}
+
+var possible_objects = [
+	0,1,2,3,4,5,6,8,9,10
+]
+
+
+var has_randomized: bool = false
+var was_following_mouse: bool = true
+
+
 
 func _ready():
 
 	object_number = 7
 
-	var random_number = OBJECTS.keys().pick_random()
 
-	var new_object = OBJECTS[random_number].instantiate()
 
-	new_object.position = position
+func _process(_delta):
 
-	get_parent().call_deferred(
-		"add_child",
-		new_object
-	)
+	if has_randomized:
+		return
 
-	queue_free()
+
+	# Placement.gd moves the object exactly onto the mouse
+	var mouse_pos = get_global_mouse_position()
+
+
+	# If the object is no longer following the mouse,
+	# it means it was placed
+	if was_following_mouse:
+
+		if global_position.distance_to(mouse_pos) > 20:
+
+			was_following_mouse = false
+
+			activate_random_object()
+
+
+
+
+func activate_random_object():
+
+	if has_randomized:
+		return
+
+
+	has_randomized = true
+
+
+	var random_number = possible_objects.pick_random()
+
+
+	print("Random block became:", random_number)
+
+
+
+	# Hide the fake random block
+	$Sprite2D.visible = false
+
+
+
+	# Spawn chosen object
+	var chosen_object = RoundManager.OBJECT_POOl.get(
+		random_number
+	).instantiate()
+
+
+	add_child(chosen_object)
+
+
+	chosen_object.position = Vector2.ZERO
