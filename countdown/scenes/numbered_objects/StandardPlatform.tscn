@@ -1,3 +1,21 @@
 [gd_scene format=3 uid="uid://diyn2o7s6fmve"]
 
-[node name="StandardPlatform" type="Node2D" unique_id=32167349]
+[ext_resource type="Script" uid="uid://b1j0fgcpxvv86" path="res://scripts/standard_platform.gd" id="1_slhhi"]
+[ext_resource type="Texture2D" uid="uid://cstg7oa3s5s0y" path="res://sprites/objects4-10.png" id="2_pdf58"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f743o"]
+size = Vector2(94, 14)
+
+[node name="StandardPlatform" type="StaticBody2D" unique_id=28370297]
+script = ExtResource("1_slhhi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=691756870]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_f743o")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=164616654]
+position = Vector2(-1, 0)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("2_pdf58")
+region_enabled = true
+region_rect = Rect2(215.56409, 1997.5967, 1337.3115, 194.31494)
