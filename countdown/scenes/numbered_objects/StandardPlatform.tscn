@@ -18,4 +18,4 @@ position = Vector2(-1, 0)
 scale = Vector2(0.07, 0.07)
 texture = ExtResource("2_pdf58")
 region_enabled = true
-region_rect = Rect2(215.56409, 1997.5967, 1337.3115, 194.31494)
+region_rect = Rect2(204.59637, 1902.0154, 1358.9993, 345.31958)
