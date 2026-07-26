@@ -1,6 +1,6 @@
 extends Node2D
 
-const GRID_SIZE : int = 32
+const GRID_SIZE : int = 14
 const GRID_WIDTH : int = 20   # number of columns to draw (adjust to your level size)
 const GRID_HEIGHT : int = 15  # number of rows to draw
 
@@ -49,16 +49,18 @@ func place_object():
 	get_next_object()
 
 func _draw():
-	var color = Color(1, 1, 1, 0.2)  # light, semi-transparent grid lines
+	var color = Color(1, 1, 1, 0.2)
+
+	var screen_size = get_viewport_rect().size
 
 	# vertical lines
-	for x in range(GRID_WIDTH + 1):
+	for x in range(int(screen_size.x / GRID_SIZE) + 1):
 		var start = Vector2(x * GRID_SIZE, 0)
-		var end = Vector2(x * GRID_SIZE, GRID_HEIGHT * GRID_SIZE)
+		var end = Vector2(x * GRID_SIZE, screen_size.y)
 		draw_line(start, end, color, 1.0)
 
 	# horizontal lines
-	for y in range(GRID_HEIGHT + 1):
+	for y in range(int(screen_size.y / GRID_SIZE) + 1):
 		var start = Vector2(0, y * GRID_SIZE)
-		var end = Vector2(GRID_WIDTH * GRID_SIZE, y * GRID_SIZE)
+		var end = Vector2(screen_size.x, y * GRID_SIZE)
 		draw_line(start, end, color, 1.0)

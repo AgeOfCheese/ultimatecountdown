@@ -1,6 +1,23 @@
 [gd_scene format=3 uid="uid://c86rl3uwe8uia"]
 
 [ext_resource type="Script" uid="uid://cn2uvd8q4sabt" path="res://scripts/placement.gd" id="1_a6i1o"]
+[ext_resource type="Texture2D" uid="uid://crx023cbhsmpu" path="res://sprites/background.png" id="2_pn1mm"]
 
 [node name="Placement" type="Node2D" unique_id=1186569498]
 script = ExtResource("1_a6i1o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=535807291]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1117103189]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2701.3333
+offset_bottom = 1518.6665
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_pn1mm")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
