@@ -18,6 +18,9 @@ var shield = false
 func _ready():
 	add_to_group("players")
 func _physics_process(delta: float) -> void:
+	var direction := Input.get_axis("left", "right")
+	if direction < 0:
+		animated_sprite_2d.flip_h = true
 	# Add the gravity.
 	if not is_on_floor():
 		if is_on_wall():
@@ -41,13 +44,13 @@ func _physics_process(delta: float) -> void:
 				velocity.y = JUMP_VELOCITY
 		if is_on_wall():
 			velocity.y = JUMP_VELOCITY * WALL_JUMP_FACTOR
+			animated_sprite_2d.play("slide")
 	#wall_jump
 	if is_on_wall() and $WallJumpTimer.is_stopped():
 		$WallJumpTimer.start()
 	
 	
 	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:

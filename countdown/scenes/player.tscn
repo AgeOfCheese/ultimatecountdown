@@ -2,9 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bae387em2c15l" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://iy4qmu3pktw5" path="res://sprites/player.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://i3xlb3wbywk4" path="res://sprites/player2.png" id="2_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(30.147541, 25.045563)
+size = Vector2(21.335184, 20.060751)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(0, 481, 793, 481)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("2_g2els")
@@ -18,8 +23,20 @@ region = Rect2(0, 0, 606, 583)
 atlas = ExtResource("2_g2els")
 region = Rect2(606, 0, 606, 583)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(0, 0, 793, 481)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_biclr"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg0r")
+}],
+"loop": 1,
+"name": &"crouch",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g2els")
@@ -43,6 +60,14 @@ animations = [{
 "loop": 1,
 "name": &"jump",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuyoq")
+}],
+"loop": 1,
+"name": &"slide",
+"speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=618513768 groups=["players"]]
@@ -50,7 +75,7 @@ scale = Vector2(2.156063, 1.7945489)
 script = ExtResource("1_g2els")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1896869877]
-position = Vector2(1.1595212, 2.5227818)
+position = Vector2(-0.46380877, 3.343459)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="WallJumpTimer" type="Timer" parent="." unique_id=475150290]
@@ -58,6 +83,6 @@ wait_time = 0.25
 one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=293033065]
-scale = Vector2(0.07, 0.07)
+scale = Vector2(0.055, 0.055)
 sprite_frames = SubResource("SpriteFrames_biclr")
-animation = &"jump"
+animation = &"slide"
