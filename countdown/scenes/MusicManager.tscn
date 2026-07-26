@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cgmnvk12vqudl"]
+
+[ext_resource type="AudioStream" uid="uid://cpajr6g4v6gj6" path="res://Music/Kevin MacLeod_ Sneaky Snitch.mp3" id="1_k17rw"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" unique_id=1142115781]
+stream = ExtResource("1_k17rw")
+autoplay = true
+parameters/looping = true
