@@ -1,3 +1,29 @@
 [gd_scene format=3 uid="uid://djmlyvx6kqa64"]
 
-[node name="ShieldBlock" type="Node2D" unique_id=535547566]
+[ext_resource type="Texture2D" uid="uid://cstg7oa3s5s0y" path="res://sprites/objects4-10.png" id="1_scb0t"]
+[ext_resource type="Script" uid="uid://bdfgbiw5ttd04" path="res://scripts/shield_block.gd" id="2_3smr8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xjwy"]
+size = Vector2(40.25, 28.4375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scb0t"]
+size = Vector2(72.5, 13.53125)
+
+[node name="ShieldBlock" type="StaticBody2D" unique_id=288003515]
+script = ExtResource("2_3smr8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1204167891]
+position = Vector2(-1.125, 0.78125)
+shape = SubResource("RectangleShape2D_1xjwy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1575954528]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("1_scb0t")
+region_enabled = true
+region_rect = Rect2(101.80896, 384.57013, 1064.1688, 513.73676)
+
+[node name="ShieldHitbox" type="Area2D" parent="." unique_id=1081412288]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHitbox" unique_id=1383757576]
+position = Vector2(-1, -9)
+shape = SubResource("RectangleShape2D_scb0t")
