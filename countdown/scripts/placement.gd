@@ -1,17 +1,48 @@
 extends Node2D
 
+var current_object : int
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
 
+	get_next_object()
+	
+func get_next_object():
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	if RoundManager.objects_to_place.is_empty():
+
+		print("Placement Finished!")
+		RoundManager.end_placement()
+		return
+
+	current_object = RoundManager.objects_to_place.pop_front()
+
+	print("Now placing:", current_object)
 
 func _unhandled_input(event):
-	#print(event)
-	if event is InputEventMouseButton and event.is_pressed():
+
+	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			print("clicked")
+			if event.pressed:
+				place_object()
+
+func place_object():
+
+	var mouse_pos = get_global_mouse_position()
+
+	mouse_pos = mouse_pos.snapped(Vector2(32,32))
+
+	RoundManager.level_objects.append(
+		{
+			"number": current_object,
+			"position": mouse_pos
+		}
+	)
+
+	print(
+		"Placed ",
+		current_object,
+		" at ",
+		mouse_pos
+	)
+
+	get_next_object()
