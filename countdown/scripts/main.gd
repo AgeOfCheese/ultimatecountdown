@@ -16,11 +16,9 @@ func _on_start_pressed():
 
 func _on_options_pressed():
 	get_tree().call_deferred("change_scene_to_file", RoundManager.OPTIONS_SCENE_PATH)
-	# TODO: change_scene_to_file to an options scene once it exists
+
 
 func _on_tutorial_pressed():
-	print("Tutorial not implemented yet")
-	# TODO: change_scene_to_file to a tutorial scene once it exists
-
+	get_tree().call_deferred("change_scene_to_file", RoundManager.TUTORIAL_SCENE_PATH)
 func _on_quit_pressed():
 	get_tree().quit()
