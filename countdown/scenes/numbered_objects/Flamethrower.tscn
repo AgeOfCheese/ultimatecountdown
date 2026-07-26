@@ -1,10 +1,79 @@
 [gd_scene format=3 uid="uid://dv7ch5j2abl8p"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_biclr"]
+[ext_resource type="Texture2D" uid="uid://dxsyk17h2kdeo" path="res://sprites/objects1-3.png" id="1_40afq"]
+[ext_resource type="Script" uid="uid://h1mdsgmr5v87" path="res://scripts/flamethrower.gd" id="1_uw24a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_biclr"]
+size = Vector2(27, 29.8125)
+
+[sub_resource type="Animation" id="Animation_uw24a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(1987.2097, 1358.3029, 1565.6738, 575.46533)]
+}
+
+[sub_resource type="Animation" id="Animation_t82dh"]
+resource_name = "flame"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2(1987.2097, 1358.3029, 1565.6738, 575.46533), Rect2(299.21777, 1378.6893, 1565.6738, 575.46533), Rect2(307.3723, 1366.4573, 1565.6738, 575.46533)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2lpsm"]
+_data = {
+&"RESET": SubResource("Animation_uw24a"),
+&"flame": SubResource("Animation_t82dh")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgkut"]
+size = Vector2(60.78125, 14)
 
 [node name="Flamethrower" type="StaticBody2D" unique_id=1515899422]
+script = ExtResource("1_uw24a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=456203324]
+position = Vector2(28.5, 1.09375)
+shape = SubResource("RectangleShape2D_biclr")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=875912125]
-sprite_frames = SubResource("SpriteFrames_biclr")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=428967757]
+position = Vector2(-4, 3)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("1_40afq")
+region_enabled = true
+region_rect = Rect2(1987.2097, 1358.3029, 1565.6738, 575.46533)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=639750018]
+libraries/ = SubResource("AnimationLibrary_2lpsm")
+
+[node name="KillTimer" type="Timer" parent="." unique_id=1254333141]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1078602546]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1732696763]
+position = Vector2(-23.609375, -1)
+shape = SubResource("RectangleShape2D_kgkut")
+
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
