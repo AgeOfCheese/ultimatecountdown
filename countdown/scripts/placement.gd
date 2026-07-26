@@ -24,18 +24,26 @@ func setup_available_objects():
 		# first placement phase — place everything
 		available_objects = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 	else:
-		# later rounds — one random object only
-		var random_object = randi() % RoundManager.OBJECT_POOl.size()
-		available_objects = [random_object]
-
-	# edge case: if the random object already happens to exist on the board
-	# (e.g. it survived decrementing from a previous round), there's nothing
-	# left to place — skip straight to the level
-	if check_placement_complete():
-		RoundManager.end_placement()
-		return
+		# later rounds — one random object, rerolled to avoid one already on the board
+		available_objects = [get_new_random_object()]
 
 	queue_redraw()
+
+# Picks a random object number that isn't already placed on the board.
+# Falls back to allowing a duplicate only if every possible number is taken.
+func get_new_random_object() -> int:
+	var pool_size = RoundManager.OBJECT_POOl.size()
+	var attempts = 0
+	var max_attempts = pool_size * 4  # generous cap, avoids any risk of infinite loop
+
+	while attempts < max_attempts:
+		var candidate = randi() % pool_size
+		if not candidate in placed_objects:
+			return candidate
+		attempts += 1
+
+	# every number is already on the board — just allow a duplicate this time
+	return randi() % pool_size
 
 func _process(_delta):
 	if current_node:
