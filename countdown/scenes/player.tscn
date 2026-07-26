@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://iy4qmu3pktw5" path="res://sprites/player.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://i3xlb3wbywk4" path="res://sprites/player2.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dec0k5ymfw1fx" path="res://sprites/player3.png" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://bwu8ey015ctn8" path="res://sprites/shield.png" id="5_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(21.335184, 20.060751)
@@ -90,6 +91,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_biclr"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(2, 2, 1)
+spread = 180.0
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.049999997
+scale_max = 0.049999997
+
 [node name="Player" type="CharacterBody2D" unique_id=618513768 groups=["players"]]
 scale = Vector2(2.156063, 1.7945489)
 script = ExtResource("1_g2els")
@@ -107,3 +119,10 @@ scale = Vector2(0.055, 0.055)
 sprite_frames = SubResource("SpriteFrames_biclr")
 animation = &"walk"
 frame_progress = 0.08040897
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1292465725]
+visible = false
+amount = 4
+texture = ExtResource("5_qlg0r")
+lifetime = 0.4
+process_material = SubResource("ParticleProcessMaterial_biclr")

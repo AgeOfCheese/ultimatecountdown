@@ -19,6 +19,10 @@ func _ready():
 	add_to_group("players")
 
 func _physics_process(delta: float) -> void:
+	if shield:
+		$GPUParticles2D.show()
+	else:
+		$GPUParticles2D.hide()
 	var direction := Input.get_axis("left", "right")
 	if direction < 0:
 		animated_sprite_2d.flip_h = true
