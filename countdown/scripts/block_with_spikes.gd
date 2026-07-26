@@ -13,4 +13,4 @@ func _on_area_2d_body_entered(body):
 	# doesn't have a take_damage() function.
 	
 	if body.is_in_group("players"):
-		print("Player touched spikes!")
+		body.take_damage()
