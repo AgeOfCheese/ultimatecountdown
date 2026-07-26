@@ -119,9 +119,18 @@ func place_object():
 # This matters because placed_objects can carry over extra entries from
 # previous rounds once available_objects shrinks to just one item.
 func check_placement_complete() -> bool:
+
+	# Check if the objects required THIS placement phase
+	# have been placed during THIS placement phase only
 	for obj in available_objects:
-		if not obj in placed_objects:
+
+		var count_required = available_objects.count(obj)
+		var count_placed = placed_objects.count(obj)
+
+		if count_placed < count_required:
+			print("hi")
 			return false
+
 	return true
 
 func _draw():
