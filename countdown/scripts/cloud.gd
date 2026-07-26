@@ -1,9 +1,12 @@
 extends NumberedObject
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	object_number = 10
-	
-func apply_effect(player):
-	player.apply_cloud_effect()
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("players"):
+		body.in_cloud = true
+
+func _on_area_2d_body_exited(body):
+	if body.is_in_group("players"):
+		body.in_cloud = false
