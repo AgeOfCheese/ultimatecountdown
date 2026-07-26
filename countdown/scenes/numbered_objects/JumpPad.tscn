@@ -1,3 +1,31 @@
 [gd_scene format=3 uid="uid://cdgnf762k0f0l"]
 
-[node name="JumpPad" type="Node2D" unique_id=695635493]
+[ext_resource type="Script" uid="uid://bg6xkdlj42d4e" path="res://scripts/jump_pad.gd" id="1_6yu62"]
+[ext_resource type="Texture2D" uid="uid://cstg7oa3s5s0y" path="res://sprites/objects4-10.png" id="1_kmfhs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyynl"]
+size = Vector2(60, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmi0a"]
+size = Vector2(60, 7)
+
+[node name="JumpPad" type="StaticBody2D" unique_id=36616939]
+script = ExtResource("1_6yu62")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=521986045]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_tyynl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1209516548]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("1_kmfhs")
+region_enabled = true
+region_rect = Rect2(199.25098, 1184.7324, 855.672, 496.7583)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=611430919]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=905827375]
+position = Vector2(0, -13.5)
+shape = SubResource("RectangleShape2D_lmi0a")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
