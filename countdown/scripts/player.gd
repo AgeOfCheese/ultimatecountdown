@@ -86,7 +86,12 @@ func take_damage():
 	if shield:
 		shield = false
 		return
+	
+	set_physics_process(false)  # freeze movement during death anim
 	animated_sprite_2d.play("dead")
+	
+	await get_tree().create_timer(2.0).timeout
+	
 	died.emit()
 	queue_free()
 
