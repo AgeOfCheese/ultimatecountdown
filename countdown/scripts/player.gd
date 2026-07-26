@@ -8,6 +8,8 @@ const WALL_JUMP_FACTOR = 0.7
 const WALL_JUMP_SLIDE_FACTOR = 0.4
 
 var orig_scale: Vector2 = scale
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
 
 #flags
 var is_crouching = false
@@ -30,6 +32,7 @@ func _physics_process(delta: float) -> void:
 		scale.y = orig_scale.y
 	# Handle jump.
 	if Input.is_action_just_pressed("up"):
+		animated_sprite_2d.play("jump")
 		if is_on_floor():
 			if is_crouching:
 				velocity.y = JUMP_VELOCITY * CROUCH_FACTOR
@@ -47,11 +50,18 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction * SPEED
 	else:
+		if !animated_sprite_2d.is_playing():
+			animated_sprite_2d.play("idle")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
+	#temporary animation fix
+	if is_on_floor() and velocity.y == 0:
+		if animated_sprite_2d.animation == "jump":
+			animated_sprite_2d.stop()
 	move_and_slide()
 
 func take_damage():
+	animated_sprite_2d.play("dead")
 	queue_free() #temp
 
 func _unhandled_input(event):
