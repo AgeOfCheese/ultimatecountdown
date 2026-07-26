@@ -36,6 +36,15 @@ func _process(_delta):
 			was_following_mouse = false
 
 			activate_random_object()
+	
+	
+
+	if Input.is_key_pressed(KEY_UP) \
+	or Input.is_key_pressed(KEY_DOWN) \
+	or Input.is_key_pressed(KEY_LEFT) \
+	or Input.is_key_pressed(KEY_RIGHT):
+
+		activate_random_object()
 
 
 
