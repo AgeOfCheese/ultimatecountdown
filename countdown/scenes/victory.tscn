@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://5qyll6byj75w"]
+
+[ext_resource type="Texture2D" uid="uid://d0d4wxp75i407" path="res://sprites/menu_button.png" id="1_faxov"]
+[ext_resource type="Script" uid="uid://2d0ywv88ym21" path="res://scripts/victory.gd" id="1_hl81x"]
+[ext_resource type="Texture2D" uid="uid://dona6qykwingd" path="res://sprites/victory.png" id="2_hl81x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgkut"]
+atlas = ExtResource("1_faxov")
+region = Rect2(866.31445, 979.33575, 679.042, 339.52094)
+
+[node name="Victory" type="Control" unique_id=910362625]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hl81x")
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=731831450]
+layout_mode = 1
+offset_left = 209.0
+offset_top = 158.0
+offset_right = 888.0
+offset_bottom = 497.0
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer2" unique_id=1474496115]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_kgkut")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1769051136]
+layer = -1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=427996853]
+offset_right = 1152.0
+offset_bottom = 647.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer" unique_id=750267157]
+layout_mode = 2
+texture = ExtResource("2_hl81x")
+expand_mode = 1
