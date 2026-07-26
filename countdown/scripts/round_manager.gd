@@ -3,11 +3,15 @@ extends Node
 #constants
 const PLACEMENT_SCENE_PATH = "res://scenes/placement.tscn"
 const LEVEL_SCENE_PATH = "res://scenes/level.tscn"
+const OBJECT_POOl: Array[PackedScene] = [null, preload("res://scenes/numbered_objects/StandardWall.tscn")]
 #signals
 signal round_complete
 
 #variables
 var level_objects: Array[Dictionary] = []
+#var objects_to_place = [ 10,9,8,7,6,5,4,3,2,1,0 ] 
+var objects_to_place = [1] 
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
