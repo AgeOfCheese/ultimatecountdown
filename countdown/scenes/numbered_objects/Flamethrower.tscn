@@ -1,3 +1,10 @@
 [gd_scene format=3 uid="uid://dv7ch5j2abl8p"]
 
-[node name="Flamethrower" type="Node2D" unique_id=805207110]
+[sub_resource type="SpriteFrames" id="SpriteFrames_biclr"]
+
+[node name="Flamethrower" type="StaticBody2D" unique_id=1515899422]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=456203324]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=875912125]
+sprite_frames = SubResource("SpriteFrames_biclr")

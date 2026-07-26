@@ -13,6 +13,7 @@ var orig_scale: Vector2 = scale
 
 #flags
 var is_crouching = false
+var shield = false
 
 func _ready():
 	add_to_group("players")
@@ -61,6 +62,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func take_damage():
+	if shield:
+		shield = false
+		return
 	animated_sprite_2d.play("dead")
 	queue_free() #temp
 
@@ -70,3 +74,5 @@ func _unhandled_input(event):
 			is_crouching = true
 	if Input.is_action_just_released("crouch"):
 		is_crouching = false
+func add_shield():
+	shield = true
