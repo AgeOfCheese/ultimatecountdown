@@ -7,6 +7,9 @@ const TOP_BAR_HEIGHT : int = 60
 var current_object : int = -1
 var current_node : Node2D
 
+# Tracks objects already placed
+var placed_objects = []
+
 var available_objects = [
 	10,9,8,7,6,5,4,3,2,1,0
 ]
@@ -58,7 +61,14 @@ func select_object(mouse_pos : Vector2):
 	if index >= available_objects.size():
 		return
 
-	current_object = available_objects[index]
+	var selected_object = available_objects[index]
+
+	# Don't allow selecting objects already placed
+	if selected_object in placed_objects:
+		print("Already placed object:", selected_object)
+		return
+
+	current_object = selected_object
 
 	current_node = RoundManager.OBJECT_POOl.get(
 		current_object
@@ -92,7 +102,9 @@ func place_object():
 		grid_pos
 	)
 
-	# Leave the object in the scene
+	# Mark this object as already used
+	placed_objects.append(current_object)
+
 	current_node = null
 	current_object = -1
 
