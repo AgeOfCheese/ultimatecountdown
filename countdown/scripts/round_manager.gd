@@ -34,13 +34,20 @@ func advance_round():
 	round_number += 1  # NEW
 	get_tree().call_deferred("change_scene_to_file", PLACEMENT_SCENE_PATH)
 
-func end_placement():
-	get_tree().call_deferred("change_scene_to_file", LEVEL_SCENE_PATH)
 
+func end_placement():
+
+	print("FINAL OBJECT LIST:")
+	print(level_objects)
+
+	get_tree().call_deferred(
+		"change_scene_to_file",
+		LEVEL_SCENE_PATH
+	)
 func add_object(object_id: String, pos: Vector2, rot: float = 0.0):
-	for i in range(level_objects.size() - 1, -1, -1):
-		if level_objects[i].get("id") == object_id:
-			level_objects.remove_at(i)
+	#for i in range(level_objects.size() - 1, -1, -1):
+		#if level_objects[i].get("id") == object_id:
+			#level_objects.remove_at(i)
 	var new_object_data = {
 		"id": object_id,
 		"position": pos,
@@ -66,10 +73,16 @@ func replace_object(old_id: String, new_id: String, pos: Vector2, rot: float = 0
 
 		if object["id"] == old_id and object["position"] == pos:
 
-			object["id"] = new_id
-			object["position"] = pos
-			object["rotation"] = rot
+			level_objects.erase(object)
 
+			var new_object = {
+				"id": new_id,
+				"position": pos,
+				"rotation": rot
+			}
+
+			level_objects.append(new_object)
+			print(level_objects)
 			print("Replaced object", old_id, "with", new_id)
 
 			return
