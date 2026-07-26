@@ -15,7 +15,6 @@ var orig_scale: Vector2 = scale
 var is_crouching = false
 var shield = false
 var in_cloud = false
-var score = 0
 
 func _ready():
 	add_to_group("players")
@@ -103,6 +102,3 @@ func _unhandled_input(event):
 
 func add_shield():
 	shield = true
-
-func add_score():
-	score+=1

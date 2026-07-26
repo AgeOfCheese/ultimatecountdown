@@ -6,7 +6,8 @@ func _ready():
 	object_number = 0
 
 func apply_effect(player):
-	player.add_score()
+	RoundManager.add_score()
+	
 	
 
 func _on_area_2d_body_entered(body) -> void:

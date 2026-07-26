@@ -65,6 +65,7 @@ region_rect = Rect2(1987.2097, 1358.3029, 1565.6738, 575.46533)
 libraries/ = SubResource("AnimationLibrary_2lpsm")
 
 [node name="KillTimer" type="Timer" parent="." unique_id=1254333141]
+wait_time = 0.5
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1078602546]
 

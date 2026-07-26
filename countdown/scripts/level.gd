@@ -30,7 +30,7 @@ func _process(_delta):
 
 func player_entered_exit(body):
 	if body.is_in_group("players"):
-		body.add_score()
+		RoundManager.add_score()
 		RoundManager.round_complete.emit()
 
 func _on_player_died():

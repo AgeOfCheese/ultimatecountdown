@@ -10,6 +10,7 @@ const FAILURE_SCENE_PATH = "res://scenes/failure.tscn"
 const WINS_TO_VICTORY = 10
 const DEATHS_TO_FAILURE = 5
 
+var score = 0
 
 const OBJECT_POOl: Array[PackedScene] = [
 	preload("res://scenes/numbered_objects/Portal.tscn"), 
@@ -55,7 +56,7 @@ func _ready():
 
 
 func _process(_delta):
-
+	print(score)
 	pass
 
 
@@ -64,10 +65,7 @@ func _process(_delta):
 # Handles winning rounds
 func _on_round_complete():
 
-	win_count += 1
-
-
-	if win_count >= WINS_TO_VICTORY:
+	if score >= WINS_TO_VICTORY:
 
 		clear_game_data()
 
@@ -88,6 +86,16 @@ func _on_round_complete():
 func _on_round_failed():
 
 	death_count += 1
+	
+	if score >= WINS_TO_VICTORY:
+
+		clear_game_data()
+
+		get_tree().call_deferred(
+			"change_scene_to_file",
+			VICTORY_SCENE_PATH
+		)
+
 
 
 	if death_count >= DEATHS_TO_FAILURE:
@@ -235,3 +243,6 @@ func clear_game_data():
 
 
 	print("RoundManager data cleared")
+
+func add_score():
+	score+=1
