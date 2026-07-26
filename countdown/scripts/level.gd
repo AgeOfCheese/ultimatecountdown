@@ -14,14 +14,14 @@ func _ready():
 
 func spawn_level_objects():
 	for object_data in RoundManager.level_objects:
-		var object_number = object_data.get("number")
+		var object_number = object_data.get("id")
 		var object_pos = object_data.get("position")
 
 		if object_number == null or object_pos == null:
 			push_warning("Skipping malformed level object entry: %s" % object_data)
 			continue
 
-		var scene = RoundManager.OBJECT_POOl.get(object_number)
+		var scene = RoundManager.OBJECT_POOl.get(int(object_number))
 		if scene == null:
 			push_warning("No scene found in OBJECT_POOl for number: %s" % object_number)
 			continue
