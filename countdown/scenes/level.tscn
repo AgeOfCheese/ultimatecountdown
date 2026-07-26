@@ -58,3 +58,4 @@ grow_vertical = 2
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_w8frs")
 expand_mode = 1
+stretch_mode = 6

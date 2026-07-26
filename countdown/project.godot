@@ -19,6 +19,12 @@ config/icon="res://icon.svg"
 
 RoundManager="*uid://5o6vr08865fs"
 
+[display]
+
+window/size/mode=3
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [global_group]
 
 players=""
