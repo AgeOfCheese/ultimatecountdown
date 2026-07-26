@@ -1,3 +1,31 @@
 [gd_scene format=3 uid="uid://b5tn6yrrui5h3"]
 
-[node name="Cloud" type="Node2D" unique_id=1806451249]
+[ext_resource type="Texture2D" uid="uid://cstg7oa3s5s0y" path="res://sprites/objects4-10.png" id="1_mrjfb"]
+[ext_resource type="Script" uid="uid://cjsk7tffscy3w" path="res://scripts/cloud.gd" id="1_rbk3o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_biclr"]
+size = Vector2(63, 36)
+
+[node name="Cloud" type="StaticBody2D" unique_id=1950690529]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_rbk3o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1335253291]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_biclr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1916629870]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_mrjfb")
+region_enabled = true
+region_rect = Rect2(2042.592, 1008.3933, 790.9912, 554.5094)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=320656108]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=517859772]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_biclr")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
