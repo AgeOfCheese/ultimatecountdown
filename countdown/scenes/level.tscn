@@ -41,9 +41,6 @@ shape = SubResource("RectangleShape2D_w7c3h")
 
 [node name="TestObjects" type="Node2D" parent="." unique_id=969744204]
 
-[node name="TestObject" parent="TestObjects" unique_id=1850340220 instance=ExtResource("2_w7c3h")]
-position = Vector2(488, 317)
-
 [node name="TestObject4" parent="TestObjects" unique_id=1414757509 instance=ExtResource("2_w7c3h")]
 position = Vector2(99, 443)
 
