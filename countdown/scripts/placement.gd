@@ -7,7 +7,7 @@ const TOP_BAR_HEIGHT : int = 60
 var current_object : int = -1
 var current_node : Node2D
 
-# Tracks objects already placed
+# Stores objects that have already been placed
 var placed_objects = []
 
 var available_objects = [
@@ -63,9 +63,9 @@ func select_object(mouse_pos : Vector2):
 
 	var selected_object = available_objects[index]
 
-	# Don't allow selecting objects already placed
+	# Don't allow selecting already placed objects
 	if selected_object in placed_objects:
-		print("Already placed object:", selected_object)
+		print("Object already placed:", selected_object)
 		return
 
 	current_object = selected_object
@@ -102,11 +102,19 @@ func place_object():
 		grid_pos
 	)
 
-	# Mark this object as already used
+	# Remember this object was placed
 	placed_objects.append(current_object)
 
 	current_node = null
 	current_object = -1
+
+	# Update green numbers
+	queue_redraw()
+
+	# Start game after all objects are placed
+	if placed_objects.size() == available_objects.size():
+		print("All objects placed! Starting game...")
+		RoundManager.end_placement()
 
 
 
@@ -159,11 +167,17 @@ func _draw():
 			Color(0.2,0.2,0.2,0.8)
 		)
 
+		var text_color = Color.WHITE
+
+		if available_objects[i] in placed_objects:
+			text_color = Color.GREEN
+
 		draw_string(
 			ThemeDB.fallback_font,
 			rect.position + Vector2(18,35),
 			str(available_objects[i]),
 			HORIZONTAL_ALIGNMENT_LEFT,
 			-1,
-			24
+			24,
+			text_color
 		)
