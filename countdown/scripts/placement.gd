@@ -12,6 +12,8 @@ var current_node : Node2D
 
 var placed_objects = []
 var available_objects = []  # CHANGED — now built dynamically, not hardcoded
+var show_skip_button = false  
+var object_icons = {}
 
 func _ready():
 	sync_with_round_manager()
@@ -48,7 +50,11 @@ func _unhandled_input(event):
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			var mouse_pos = event.position
 
-			if Rect2(SKIP_BUTTON_POSITION, SKIP_BUTTON_SIZE).has_point(mouse_pos):
+			# Skip button
+			if show_skip_button and Rect2(
+				SKIP_BUTTON_POSITION,
+				SKIP_BUTTON_SIZE
+			).has_point(mouse_pos):
 				print("Skipping placement")
 				if current_node:
 					current_node.queue_free()
@@ -67,8 +73,12 @@ func select_object(mouse_pos : Vector2):
 		print("Already holding an object!")
 		return
 
-	var index = int(mouse_pos.x / BUTTON_SIZE)
-	if index >= available_objects.size():
+	# must match the same centering offset used in _draw()
+	var bar_width = available_objects.size() * BUTTON_SIZE
+	var start_x = (get_viewport_rect().size.x - bar_width) / 2.0
+
+	var index = int((mouse_pos.x - start_x) / BUTTON_SIZE)  # CHANGED — subtract start_x first
+	if index < 0 or index >= available_objects.size():       # CHANGED — also guard negative index
 		return
 
 	var selected_object = available_objects[index]
@@ -127,9 +137,11 @@ func _draw():
 		var start = Vector2(0, y * GRID_SIZE)
 		var end = Vector2(screen_size.x, y * GRID_SIZE)
 		draw_line(start, end, color, 1.0)
+	var bar_width = available_objects.size() * BUTTON_SIZE
+	var start_x = (get_viewport_rect().size.x - bar_width) / 2.0
 
 	for i in range(available_objects.size()):
-		var rect = Rect2(i * BUTTON_SIZE, 0, BUTTON_SIZE, TOP_BAR_HEIGHT)
+		var rect = Rect2(start_x + i * BUTTON_SIZE, 0, BUTTON_SIZE, TOP_BAR_HEIGHT)
 		draw_rect(rect, Color(0.2,0.2,0.2,0.8))
 
 		var text_color = Color.WHITE
@@ -146,16 +158,24 @@ func _draw():
 			text_color
 		)
 
-	draw_rect(Rect2(SKIP_BUTTON_POSITION, SKIP_BUTTON_SIZE), Color(0.8,0.2,0.2,0.8))
-	draw_string(
-		ThemeDB.fallback_font,
-		SKIP_BUTTON_POSITION + Vector2(15,32),
-		"SKIP",
-		HORIZONTAL_ALIGNMENT_LEFT,
-		-1,
-		24,
-		Color.WHITE
-	)
+# Skip button
+	if show_skip_button:
+		draw_rect(
+			Rect2(
+				SKIP_BUTTON_POSITION,
+				SKIP_BUTTON_SIZE
+			),
+			Color(0.8,0.2,0.2,0.8)
+		)
+		draw_string(
+			ThemeDB.fallback_font,
+			SKIP_BUTTON_POSITION + Vector2(15,32),
+			"SKIP",
+			HORIZONTAL_ALIGNMENT_LEFT,
+			-1,
+			24,
+			Color.WHITE
+		)
 
 func sync_with_round_manager():
 	placed_objects.clear()
