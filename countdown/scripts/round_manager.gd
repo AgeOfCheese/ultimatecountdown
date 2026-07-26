@@ -1,5 +1,4 @@
 extends Node
-
 #constants
 const PLACEMENT_SCENE_PATH = "res://scenes/placement.tscn"
 const LEVEL_SCENE_PATH = "res://scenes/level.tscn"
@@ -15,42 +14,46 @@ preload("res://scenes/numbered_objects/RandClone.tscn"),
 preload("res://scenes/numbered_objects/BlackHole.tscn"),
 preload("res://scenes/numbered_objects/DamagePlatform.tscn"),
 preload("res://scenes/numbered_objects/Cloud.tscn")]
-
 #signals
 signal round_complete
-
+signal round_failed  # NEW
 #variables
 var level_objects: Array[Dictionary] = []
-#var objects_to_place = [ 10,9,8,7,6,5,4,3,2,1,0 ] 
 var objects_to_place = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	round_complete.connect(advance_round)
+	round_failed.connect(advance_round)  # NEW — failing also ticks the round forward
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-#ends the round phase, placement will have to pull objects from here as well
 func advance_round():
+	decrement_level_objects()
 	get_tree().call_deferred("change_scene_to_file", PLACEMENT_SCENE_PATH)
-	
-#ends the placement phase, level will have to pull new objects from placement
+
 func end_placement():
 	get_tree().call_deferred("change_scene_to_file", LEVEL_SCENE_PATH)
 
-# Called by placement.tscn when a player places an item
 func add_object(object_id: String, pos: Vector2, rot: float = 0.0):
+	for i in range(level_objects.size() - 1, -1, -1):
+		if level_objects[i].get("id") == object_id:
+			level_objects.remove_at(i)
 	var new_object_data = {
-		"id": object_id,       # e.g., "spike_trap", "wood_platform"
-		"position": pos,       # Vector2(x, y)
-		"rotation": rot        # Storing rotation is usually important for UCH!
+		"id": object_id,
+		"position": pos,
+		"rotation": rot
 	}
 	level_objects.append(new_object_data)
 
-# Called by level.tscn in its _ready() function to spawn everything
+func decrement_level_objects():
+	for i in range(level_objects.size() - 1, -1, -1):
+		var current_id = int(level_objects[i].get("id"))
+		var new_id = current_id - 1
+		if new_id < 0:
+			level_objects.remove_at(i)
+		else:
+			level_objects[i]["id"] = str(new_id)
+
 func get_level_objects() -> Array[Dictionary]:
 	return level_objects

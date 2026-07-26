@@ -23,7 +23,7 @@ var available_objects = [
 
 
 func _ready():
-	pass
+	sync_with_round_manager()
 
 
 
@@ -308,3 +308,20 @@ func _draw():
 		24,
 		Color.WHITE
 	)
+	
+func sync_with_round_manager():
+	placed_objects.clear()
+	for object_data in RoundManager.level_objects:
+		var id = int(object_data.get("id"))
+		var pos = object_data.get("position")
+		placed_objects.append(id)
+
+		var scene = RoundManager.OBJECT_POOl.get(id)
+		if scene == null:
+			push_warning("No scene found in OBJECT_POOl for id: %s" % id)
+			continue
+
+		var node = scene.instantiate()
+		add_child(node)
+		node.global_position = pos
+	queue_redraw()

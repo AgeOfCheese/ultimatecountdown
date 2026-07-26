@@ -30,8 +30,18 @@ shape = SubResource("RectangleShape2D_biclr")
 position = Vector2(1125, 254)
 
 [node name="EndHitbox" type="Area2D" parent="End/Marker2D" unique_id=1263425692]
+position = Vector2(10, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="End/Marker2D/EndHitbox" unique_id=825451531]
+shape = SubResource("RectangleShape2D_biclr")
+
+[node name="StartHitbox" type="StaticBody2D" parent="End" unique_id=665586565]
+position = Vector2(974, 281)
+scale = Vector2(10.119999, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="End/StartHitbox" unique_id=722761840]
+position = Vector2(8.596839, 178.09998)
+scale = Vector2(0.9328063, 10.080001)
 shape = SubResource("RectangleShape2D_biclr")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1952727831]

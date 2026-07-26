@@ -11,6 +11,9 @@ var orig_scale: Vector2 = scale
 var is_crouching = false
 var shield = false
 var in_cloud = false  # set/cleared by AntiGravityCloud
+var score = 0
+
+signal died
 
 func _ready():
 	add_to_group("players")
@@ -80,7 +83,8 @@ func take_damage():
 		shield = false
 		return
 	animated_sprite_2d.play("dead")
-	queue_free() #temp
+	died.emit() 
+	queue_free()
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("crouch"):
@@ -91,3 +95,6 @@ func _unhandled_input(event):
 
 func add_shield():
 	shield = true
+
+func add_score():
+	score+=1
