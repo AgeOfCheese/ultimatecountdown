@@ -1,3 +1,23 @@
 [gd_scene format=3 uid="uid://djs1ym7bk0wpf"]
 
-[node name="Portal" type="Node2D" unique_id=1104046921]
+[ext_resource type="Script" uid="uid://6upcy5p8tail" path="res://scripts/portal.gd" id="1_la0wb"]
+[ext_resource type="Texture2D" uid="uid://cyhkvpfg86a0i" path="res://sprites/coin.png" id="2_x08rf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f743o"]
+radius = 17.0
+
+[node name="Portal" type="StaticBody2D" unique_id=105069202]
+script = ExtResource("1_la0wb")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2016667541]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=77375380]
+shape = SubResource("CircleShape2D_f743o")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=99672064]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("2_x08rf")
+region_enabled = true
+region_rect = Rect2(66.88403, 56.853516, 541.2927, 577.6821)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
