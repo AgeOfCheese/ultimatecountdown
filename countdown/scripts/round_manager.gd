@@ -3,14 +3,26 @@ extends Node
 #constants
 const PLACEMENT_SCENE_PATH = "res://scenes/placement.tscn"
 const LEVEL_SCENE_PATH = "res://scenes/level.tscn"
-const OBJECT_POOl: Array[PackedScene] = [null, preload("res://scenes/numbered_objects/StandardWall.tscn")]
+const OBJECT_POOl: Array[PackedScene] = [
+preload("res://scenes/numbered_objects/Portal.tscn"), 
+preload("res://scenes/numbered_objects/StandardWall.tscn"),
+preload("res://scenes/numbered_objects/BlockWithSpikes.tscn"),
+preload("res://scenes/numbered_objects/Flamethrower.tscn"),
+preload("res://scenes/numbered_objects/ShieldBlock.tscn"),
+preload("res://scenes/numbered_objects/JumpPad.tscn"),
+preload("res://scenes/numbered_objects/StandardPlatform.tscn"),
+preload("res://scenes/numbered_objects/RandClone.tscn"),
+preload("res://scenes/numbered_objects/BlackHole.tscn"),
+preload("res://scenes/numbered_objects/DamagePlatform.tscn"),
+preload("res://scenes/numbered_objects/Cloud.tscn")]
+
 #signals
 signal round_complete
 
 #variables
 var level_objects: Array[Dictionary] = []
 #var objects_to_place = [ 10,9,8,7,6,5,4,3,2,1,0 ] 
-var objects_to_place = [1] 
+var objects_to_place = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
 # Called when the node enters the scene tree for the first time.
