@@ -1,60 +1,50 @@
 [gd_scene format=3 uid="uid://d2cfsshc6aqj8"]
 
 [ext_resource type="Script" uid="uid://hx3v6yu5y6di" path="res://scripts/level.gd" id="1_2q6dc"]
-[ext_resource type="PackedScene" uid="uid://b6ix67ck028v8" path="res://scenes/testing_stuff/test_object.tscn" id="2_w7c3h"]
+[ext_resource type="Texture2D" uid="uid://crx023cbhsmpu" path="res://sprites/background.png" id="3_w8frs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_biclr"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
+size = Vector2(20, 37.480156)
 
 [node name="Level" type="Node2D" unique_id=1096565033]
 script = ExtResource("1_2q6dc")
 
 [node name="Start" type="Node2D" parent="." unique_id=265871457]
+position = Vector2(23, 161)
 
 [node name="Marker2D" type="Marker2D" parent="Start" unique_id=1002865464]
-position = Vector2(99, 418)
+position = Vector2(51, 25)
+
+[node name="StartHitbox" type="StaticBody2D" parent="Start" unique_id=1581709216]
+position = Vector2(-14, 120)
+scale = Vector2(10.119999, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Start/StartHitbox" unique_id=946111884]
+position = Vector2(8.596839, 178.09998)
+scale = Vector2(0.9328063, 10.080001)
+shape = SubResource("RectangleShape2D_biclr")
 
 [node name="End" type="Node2D" parent="." unique_id=903102241]
 
 [node name="Marker2D" type="Marker2D" parent="End" unique_id=981112459]
-position = Vector2(1023, 135)
+position = Vector2(1125, 254)
 
 [node name="EndHitbox" type="Area2D" parent="End/Marker2D" unique_id=1263425692]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="End/Marker2D/EndHitbox" unique_id=825451531]
 shape = SubResource("RectangleShape2D_biclr")
 
-[node name="Ground" type="Node2D" parent="." unique_id=1782636052]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1952727831]
+layer = -1
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground" unique_id=242825431]
-position = Vector2(0, 551)
-
-[node name="ColorRect" type="ColorRect" parent="Ground/StaticBody2D" unique_id=408912337]
-offset_right = 1155.2
-offset_bottom = 97.88
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D" unique_id=690668628]
-position = Vector2(577.6, 48.94)
-scale = Vector2(57.76, 4.94)
-shape = SubResource("RectangleShape2D_w7c3h")
-
-[node name="TestObjects" type="Node2D" parent="." unique_id=969744204]
-
-[node name="TestObject" parent="TestObjects" unique_id=1850340220 instance=ExtResource("2_w7c3h")]
-position = Vector2(488, 317)
-
-[node name="TestObject4" parent="TestObjects" unique_id=1414757509 instance=ExtResource("2_w7c3h")]
-position = Vector2(99, 443)
-
-[node name="TestObject5" parent="TestObjects" unique_id=1807744727 instance=ExtResource("2_w7c3h")]
-position = Vector2(327, 376)
-
-[node name="TestObject6" parent="TestObjects" unique_id=156814615 instance=ExtResource("2_w7c3h")]
-position = Vector2(205, 412)
-
-[node name="TestObject2" parent="TestObjects" unique_id=873735236 instance=ExtResource("2_w7c3h")]
-position = Vector2(647, 252)
-
-[node name="TestObject3" parent="TestObjects" unique_id=352283714 instance=ExtResource("2_w7c3h")]
-position = Vector2(818, 193)
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=246073477]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2701.3333
+offset_bottom = 1518.6665
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_w8frs")
+expand_mode = 1

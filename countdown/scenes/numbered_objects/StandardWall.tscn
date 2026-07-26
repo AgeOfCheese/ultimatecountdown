@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://6rkh105i3g7t"]
+
+[ext_resource type="Script" uid="uid://0jcwkly6ka8t" path="res://scenes/numbered_objects/standard_wall.gd" id="1_jrlma"]
+[ext_resource type="Texture2D" uid="uid://dxsyk17h2kdeo" path="res://sprites/objects1-3.png" id="2_ldhyo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tp64h"]
+size = Vector2(22, 74.5)
+
+[node name="StandardWall" type="StaticBody2D" unique_id=1490340200]
+script = ExtResource("1_jrlma")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1261940385]
+position = Vector2(0, -1.75)
+shape = SubResource("RectangleShape2D_tp64h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=680471112]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("2_ldhyo")
+region_enabled = true
+region_rect = Rect2(1134.8284, 100.09101, 468.88672, 1104.9415)
