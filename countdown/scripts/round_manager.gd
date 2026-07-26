@@ -16,20 +16,22 @@ preload("res://scenes/numbered_objects/DamagePlatform.tscn"),
 preload("res://scenes/numbered_objects/Cloud.tscn")]
 #signals
 signal round_complete
-signal round_failed  # NEW
+signal round_failed
 #variables
 var level_objects: Array[Dictionary] = []
 var objects_to_place = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+var round_number : int = 0  # NEW — 0 = first placement phase (full palette), >0 = one random object only
 
 func _ready():
 	round_complete.connect(advance_round)
-	round_failed.connect(advance_round)  # NEW — failing also ticks the round forward
+	round_failed.connect(advance_round)
 
 func _process(delta):
 	pass
 
 func advance_round():
 	decrement_level_objects()
+	round_number += 1  # NEW
 	get_tree().call_deferred("change_scene_to_file", PLACEMENT_SCENE_PATH)
 
 func end_placement():
