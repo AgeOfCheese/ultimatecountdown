@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bae387em2c15l" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://iy4qmu3pktw5" path="res://sprites/player.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://i3xlb3wbywk4" path="res://sprites/player2.png" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://dec0k5ymfw1fx" path="res://sprites/player3.png" id="4_dqkch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(21.335184, 20.060751)
@@ -26,6 +27,14 @@ region = Rect2(606, 0, 606, 583)
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
 atlas = ExtResource("2_qhqgy")
 region = Rect2(0, 0, 793, 481)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
+atlas = ExtResource("4_dqkch")
+region = Rect2(925, 683, 925, 581)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
+atlas = ExtResource("4_dqkch")
+region = Rect2(0, 1229, 925, 581)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_biclr"]
 animations = [{
@@ -68,6 +77,17 @@ animations = [{
 "loop": 1,
 "name": &"slide",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjrip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smehm")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=618513768 groups=["players"]]
@@ -85,4 +105,5 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=293033065]
 scale = Vector2(0.055, 0.055)
 sprite_frames = SubResource("SpriteFrames_biclr")
-animation = &"slide"
+animation = &"walk"
+frame_progress = 0.08040897
