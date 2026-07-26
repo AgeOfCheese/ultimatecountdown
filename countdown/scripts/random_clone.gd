@@ -53,21 +53,27 @@ func activate_random_object():
 	print("Random block became:", random_number)
 
 
-	# Create the new object
+	var spawn_position = global_position
+
+
+	# Tell RoundManager the object changed
+	RoundManager.replace_object(
+		"7",
+		str(random_number),
+		spawn_position,
+		rotation
+	)
+
+
+	# Spawn the real object
 	var new_object = RoundManager.OBJECT_POOl.get(
 		random_number
 	).instantiate()
 
 
-	# Save this object's position
-	var spawn_position = global_position
-
-
-	# Add the new object where Object 7 was
 	get_parent().add_child(new_object)
 
 	new_object.global_position = spawn_position
 
 
-	# Remove Object 7
 	queue_free()

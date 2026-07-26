@@ -57,3 +57,17 @@ func decrement_level_objects():
 
 func get_level_objects() -> Array[Dictionary]:
 	return level_objects
+	
+func replace_object(old_id: String, new_id: String, pos: Vector2, rot: float = 0.0):
+
+	for object in level_objects:
+
+		if object["id"] == old_id and object["position"] == pos:
+
+			object["id"] = new_id
+			object["position"] = pos
+			object["rotation"] = rot
+
+			print("Replaced object", old_id, "with", new_id)
+
+			return
