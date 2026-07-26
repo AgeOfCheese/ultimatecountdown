@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dd7epvldyh7a3" path="res://scripts/options.gd" id="1_2iy26"]
 [ext_resource type="Texture2D" uid="uid://d1d3qcbirfvrn" path="res://sprites/options.png" id="1_c2u1v"]
 [ext_resource type="Texture2D" uid="uid://d0d4wxp75i407" path="res://sprites/menu_button.png" id="3_kv8mn"]
+[ext_resource type="Texture2D" uid="uid://ckvogj0865rb3" path="res://sprites/graph.png" id="4_kv8mn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_biclr"]
 atlas = ExtResource("1_c2u1v")
@@ -82,3 +83,11 @@ layout_mode = 2
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_yjkok")
 stretch_mode = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=712128765]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=299212482]
+offset_right = 3134.0
+offset_bottom = 2168.0
+texture = ExtResource("4_kv8mn")

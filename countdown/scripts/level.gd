@@ -9,7 +9,7 @@ func _ready():
 	add_child(new_player)
 	end_hitbox.connect("body_entered", player_entered_exit)
 	spawn_level_objects()
-
+	
 func spawn_level_objects():
 	for object_data in RoundManager.level_objects:
 		var object_number = object_data.get("id")

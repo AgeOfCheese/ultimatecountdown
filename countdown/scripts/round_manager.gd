@@ -242,6 +242,8 @@ func clear_game_data():
 	win_count = 0
 
 	death_count = 0
+	 
+	score = 0
 
 
 	print("RoundManager data cleared")

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cn2uvd8q4sabt" path="res://scripts/placement.gd" id="1_a6i1o"]
 [ext_resource type="Texture2D" uid="uid://crx023cbhsmpu" path="res://sprites/background.png" id="2_pn1mm"]
+[ext_resource type="Script" uid="uid://c7cmiocd2kwhc" path="res://scripts/label.gd" id="3_8iydn"]
 
 [node name="Placement" type="Node2D" unique_id=1186569498]
 script = ExtResource("1_a6i1o")
@@ -21,3 +22,14 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_pn1mm")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=406731264]
+
+[node name="Label" type="Label" parent="CanvasLayer2" unique_id=299760454]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+script = ExtResource("3_8iydn")

@@ -79,8 +79,8 @@ stretch_mode = 5
 layer = -1
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=664463068]
-offset_right = 1154.0
-offset_bottom = 641.0
+offset_right = 1277.0
+offset_bottom = 735.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer" unique_id=1762771100]
 layout_mode = 2

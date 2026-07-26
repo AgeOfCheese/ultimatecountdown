@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bwjffr08tofav" path="res://sprites/tutorial.png" id="1_8ho6b"]
 [ext_resource type="Script" uid="uid://yqsalyxrc2ud" path="res://scripts/tutorial.gd" id="1_ph3nu"]
 [ext_resource type="Texture2D" uid="uid://d0d4wxp75i407" path="res://sprites/menu_button.png" id="2_ph3nu"]
+[ext_resource type="Texture2D" uid="uid://ckvogj0865rb3" path="res://sprites/graph.png" id="4_4kmhl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4kmhl"]
 atlas = ExtResource("2_ph3nu")
@@ -42,3 +43,16 @@ layout_mode = 2
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer/ScrollContainer/BoxContainer/MarginContainer2" unique_id=1061320346]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_4kmhl")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=203467549]
+layer = -2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2" unique_id=1279534214]
+offset_right = 1491.0
+offset_bottom = 2168.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2/MarginContainer" unique_id=1145380418]
+layout_mode = 2
+texture = ExtResource("4_4kmhl")
+expand_mode = 1
+stretch_mode = 4
