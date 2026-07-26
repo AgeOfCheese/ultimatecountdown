@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cjsk7tffscy3w" path="res://scripts/cloud.gd" id="1_rbk3o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_biclr"]
-size = Vector2(63, 36)
+size = Vector2(50.75, 32.25)
 
 [node name="Cloud" type="StaticBody2D" unique_id=1950690529]
 collision_layer = 2
@@ -24,7 +24,7 @@ region_rect = Rect2(2042.592, 1008.3933, 790.9912, 554.5094)
 [node name="Area2D" type="Area2D" parent="." unique_id=320656108]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=517859772]
-position = Vector2(0.5, -1)
+position = Vector2(0.375, -1.125)
 shape = SubResource("RectangleShape2D_biclr")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

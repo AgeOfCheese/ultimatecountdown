@@ -7,7 +7,7 @@
 size = Vector2(54, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ftkf"]
-size = Vector2(49.5, 5)
+size = Vector2(41, 5)
 
 [node name="BlockWithSpikes" type="StaticBody2D" unique_id=799866454]
 script = ExtResource("1_84kk1")
@@ -25,7 +25,7 @@ region_rect = Rect2(1795.5779, 261.5158, 945.928, 888.846)
 [node name="SpikeHitbox" type="Area2D" parent="." unique_id=2123667208]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeHitbox" unique_id=1859294158]
-position = Vector2(0, -17)
+position = Vector2(0.5, -17)
 shape = SubResource("RectangleShape2D_4ftkf")
 
 [connection signal="area_entered" from="SpikeHitbox" to="." method="_on_spike_hitbox_area_entered"]
